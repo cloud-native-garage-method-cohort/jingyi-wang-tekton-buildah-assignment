@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- deployment.yaml
+- service.yaml
+- route.yaml
+commonLabels:
+  app: jingyi-wang-express-sample-app
+  app.kubernetes.io/instance: jingyi-wang-express-sample-app-instance
+  app.kubernetes.io/name: jingyi-wang--express-sample-app
+images:
+- name: '*'
+  newName: quay.io/wangjingyi_ibm/tekton-buildah-assignment-app
+  newTag: a12f03c389bafe5215f53f3a9bcf63f9d0f3e550
+- name: quay.io/upslopeio/express-sample-app
+  newName: quay.io/wangjingyi_ibm/tekton-buildah-assignment-app
+  newTag: a12f03c389bafe5215f53f3a9bcf63f9d0f3e550
